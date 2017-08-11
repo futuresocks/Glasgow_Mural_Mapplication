@@ -6,7 +6,9 @@ var MuralQuery = require('../client/db/muralQuery.js');
 var query = new MuralQuery();
 
 muralsRouter.get("/", function(req, res){
-  res.json({data:"hello"});
+  query.all(function(results){
+    res.json(results);
+  });
 });
 
 module.exports = muralsRouter;
