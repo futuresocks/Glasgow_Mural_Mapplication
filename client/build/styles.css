@@ -1,6 +1,25 @@
-#map-container {
-
+body {
+  background-color: #56475c;
   display: flex;
-  height :900px;
-  width: 900px;
+  flex-direction: column;
+  justify-content: center;
+  
+}
+
+h1 {
+  display: flex;
+  justify-content:center;
+  
+}
+
+
+.map-container {
+    display: flex;
+
+
+    
+    width: 95%;
+    height: 650px;
+    border: 3px solid #424242;
+    margin: auto;
 }
