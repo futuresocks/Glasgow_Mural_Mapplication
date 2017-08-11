@@ -10,19 +10,16 @@ var UI = function(){
 
 UI.prototype = {
   render: function(murals){
+    var center = {lat: 55.861865, lng: -4.252625};
+    var zoom = 15;
+    var mapDiv = document.querySelector('#main-map')
+    var mainMap = new MapWrapper(mapDiv, center, zoom);
 
     murals.forEach(function(mural){
-      console.log(mural.title)
+      mainMap.addMarker(mural.coords, mural.title);
     })
-
-    
-    // mapDiv.style.height = '200px';
-    // mapDiv.style.width = '200px';
-
-    // var center = {lat: mural.latlng[0], lng: mural.latlng[1]};
-    // var zoom = 10;
-    // var mainMap = new MapWrapper(mapDiv, center, zoom);
   }
+  
 }
 
 module.exports = UI;
