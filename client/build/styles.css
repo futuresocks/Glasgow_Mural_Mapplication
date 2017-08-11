@@ -1,5 +1,5 @@
 body {
-  background-color: #56475c;
+  background-color: #1d2c4d;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -20,6 +20,6 @@ h1 {
     
     width: 90%;
     height: 620px;
-    border: 3px solid #424242;
+    border: 1px solid #B28417;
     margin: auto;
 }
