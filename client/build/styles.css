@@ -1,0 +1,6 @@
+#map-container {
+
+  display: flex;
+  height :900px;
+  width: 900px;
+}
