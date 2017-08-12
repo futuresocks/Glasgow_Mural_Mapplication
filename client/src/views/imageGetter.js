@@ -1,5 +1,4 @@
 var ImageGetter = function(){
-<<<<<<< HEAD
 
   }    
 
@@ -27,31 +26,10 @@ var ImageGetter = function(){
         var jsonString = this.responseText;
         var data = JSON.parse(jsonString);
         var photo = data.photos.photo[0];
-        return photo;
+        var url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_q.jpg";
+        return url;
       })
     },
-
-=======
-  var apiKey = "e83c635ab5aca5ad0990f1d779a36309";
-
-}
-
-ImageGetter.prototype = {
- 
-  getPhoto: function(string, callback){
-    var request = new XMLHttpRequest();
-    request.open("GET", "http://api.flickr.com/services/rest/?&method=flickr.photos.search&api_key=" + apiKey + "&tags=" + string + "&format=json&nojsoncallback=1");
-    request.addEventListener("load", callback);
-    request.send();
-  }
-
-  firstPhoto: function(category){
-    if(this.status !==200) return;
-    var jsonString = this.responseText;
-    var data = JSON.parse(jsonString);
-    console.log(data);
-  }    
->>>>>>> Craw
 
   // photos.photo[0].
 
