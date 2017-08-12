@@ -3,8 +3,10 @@ var UI = require('./views/ui.js');
 
 var onLoad = function(){
   new UI();
-
 };
+
+
+
 
 // document.getElementById('mural-selection').onchange = (function() {
 //   document.getElementsByTagName('audio')[0].play();
