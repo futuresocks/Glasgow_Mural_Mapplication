@@ -8,13 +8,25 @@
   <script src="bundle.js"></script>
 </head>
 <body>
-
-<h1>Mapplication</h1>
-  
-  <div class="map-container" id="main-map">
-      <!-- <div class="map_item"><div> -->
+  <span onclick="openNav()" class="openSideBar">Open Sidebar</span>
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <ul id="sideList"></ul>
   </div>
-  
-  
-</body>
-</html>
+  <script>
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "550px";
+    }
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }</script>
+
+
+    <h1>ArtCharter</h1>
+    <div class="map-container" id="main-map">
+      <!-- <div class="map_item"><div> -->
+    </div>
+
+
+  </body>
+  </html>
