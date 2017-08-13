@@ -8,7 +8,7 @@ var MapWrapper = function(container, center, zoom){
       zoom: zoom
     });
   this.googleMap.setOptions({draggable: true, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
-
+  this.markers = [];
 };
 
 MapWrapper.prototype.setCenter = function(coords){
@@ -36,6 +36,7 @@ MapWrapper.prototype.addMarker = function(coordsArray, title, tags){
       info.open(this.googleMap, marker);
     });
   })
+  this.markers.push(marker);
 }
 
 module.exports = MapWrapper;

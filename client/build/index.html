@@ -4,11 +4,13 @@
   <meta charset="UTF-8">
   <title>Glasgow City Mural Mapplication</title>
   <link rel="stylesheet" href="styles.css">
-  <script src="https://maps.googleapis.com/maps/api/js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?&libraries=geometry"></script>
   <script src="bundle.js"></script>
 </head>
 <body>
   <span onclick="openNav()" class="openSideBar">Open Sidebar</span>
+  <span class="openSideBar" id="find-nearest">Find Nearest</span>
+
   <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <ul id="sideList"></ul>

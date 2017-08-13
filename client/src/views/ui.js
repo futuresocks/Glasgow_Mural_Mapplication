@@ -3,11 +3,18 @@ var Murals = require('../models/murals')
 
 
 var UI = function(){
-  var murals = new Murals();
-  murals.all(function(result){
+  this.murals = new Murals();
+  this.murals.all(function(result){
     UI.prototype.render(result);
     UI.prototype.populateChecklist(result);
   });
+
+  var button = document.getElementById('find-nearest');
+  button.addEventListener('click', function(){
+    this.murals.all(function(result){
+      UI.prototype.findClosest(result);
+    });
+  }.bind(this));
 }
 
 UI.prototype = {
@@ -34,11 +41,11 @@ UI.prototype = {
        UI.prototype.submitUpdate(mural);
        if(mural.checked){
         mural.checked = false;
-       }else{
+      }else{
         mural.checked = true;
-       }
-       UI.prototype.setChecked(mural, link);
-      })
+      }
+      UI.prototype.setChecked(mural, link);
+    })
       link.addEventListener('mousemove', function(){
         if(mural.checked){
           link.style.background = 'url("http://i.imgur.com/F6snSOJ.jpg")';
@@ -74,8 +81,38 @@ UI.prototype = {
      request.open(method, url, async);
      request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
      request.send(postData);
-   }
+   },
+   findClosest: function(murals){
+      var options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+      };
 
- }
+      function success(pos) {
+        var p1 = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude)
+        var lowest = 0;
+        var title = murals[0].title;
+        for(var i = 0; i<murals.length; i++){
+          var p2 = new google.maps.LatLng(murals[i].coords[0], murals[i].coords[1]);
+          var distance = google.maps.geometry.spherical.computeDistanceBetween(p1, p2)
+          if(i === 0){
+            lowest = distance;
+            title = murals[i].title;
+          }if(distance < lowest){
+            lowest = distance;
+            title = murals[i].title;
+          }
+        }
+        alert(title);
+      };
+      function error(err) {
+        console.warn(`ERROR(${err.code}): ${err.message}`);
+      };
 
- module.exports = UI;
+      navigator.geolocation.getCurrentPosition(success.bind(this), error, options);
+  }
+  
+}
+
+module.exports = UI;
