@@ -1,4 +1,5 @@
 var info;
+var ImageGetter = require('./imageGetter.js');
 
 var MapWrapper = function(container, center, zoom){
   this.googleMap = new google.maps.Map(
@@ -14,7 +15,7 @@ MapWrapper.prototype.setCenter = function(coords){
   this.googleMap.setCenter(coords);
 }
 
-MapWrapper.prototype.addMarker = function(coordsArray, title){
+MapWrapper.prototype.addMarker = function(coordsArray, title, tags){
 
   var coords = {lat: coordsArray[0], lng: coordsArray[1]}
   var ig = new ImageGetter();
@@ -23,7 +24,6 @@ MapWrapper.prototype.addMarker = function(coordsArray, title){
     map: this.googleMap
   });
   marker.setAnimation(google.maps.Animation.DROP)
-
   marker.addListener('click', function() {
     if (info) {
       info.close();
