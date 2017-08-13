@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans');
 
+@font-face {
+    font-family: 'dense';
+    src: url('fonts/Dense-Regular.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
 
 html {
     overflow: hidden;
@@ -16,9 +23,11 @@ body {
 }
 
 h1 {
-  display: flex;
-  justify-content:center;
-  
+    font-family: 'dense';
+    font-color: 'goldenrod';
+    display: flex;
+    justify-content:center;
+
 }
 
 
@@ -39,7 +48,7 @@ h1 {
     color: white;
     width: 150px;
     height: 30px;
-    font-family: 'Noto Sans', sans-serif;
+    font-family: 'dense';
 
 }
 
