@@ -81,7 +81,7 @@ artist: "James Klinge",
 about: "Now working under his own name, James Klinge (aka “Klingatron”) continues his collaboration with Art Pistol whilst demonstrating the same attention to detail through his distinctive use of intricate stencil technique. However, the artist has chosen to progress his subject matter towards portraiture, a trend which has been showcased in a number of exhibitions around the world. ",
 nearby: "To the West is the Briggait; a Victorian fish-market since converted and now used as an artists’ studio and event space. To the North is the Tolbooth Clock Tower; all that remains of the original City Chambers, which was destroyed by fire in 1926. To the North-West are the independent retailers of Kings Court and Parnie Street. To the east is St Andrews in the Square, dating back to 1754 and described as one of the top six classical churches in the UK. Adjacent to the South-East is Glasgow Green, the oldest of the city’s parks having been established by Royal Grant in the 15th century. ",
 coords: [55.854816, -4.245965],
-imageTags: "",
+imageTags: "studyofawomaninblack",
 checked: false
 },
 {
