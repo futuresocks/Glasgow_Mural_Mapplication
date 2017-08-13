@@ -90,7 +90,7 @@ UI.prototype = {
       };
 
       function success(pos) {
-        var p1 = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude)
+        var p1 = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
         var lowest = 0;
         var title = murals[0].title;
         for(var i = 0; i<murals.length; i++){
