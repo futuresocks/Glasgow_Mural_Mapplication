@@ -20,14 +20,14 @@ var ImageGetter = function(){
       })
     },
 
-    firstPhoto: function(string){
+    firstPhoto: function(string, callback){
       this.makeRequest(string, function(){
         if(this.status !== 200)return;
         var jsonString = this.responseText;
         var data = JSON.parse(jsonString);
         var photo = data.photos.photo[0];
         var url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_q.jpg";
-        return url;
+        callback(url);
       })
     },
 

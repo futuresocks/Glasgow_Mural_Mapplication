@@ -19,6 +19,7 @@ MapWrapper.prototype.addMarker = function(coordsArray, title, tags){
 
   var coords = {lat: coordsArray[0], lng: coordsArray[1]}
   var ig = new ImageGetter();
+  ig.makeRequest(tags);
 
   var marker = new google.maps.Marker({
     position: coords,
@@ -26,17 +27,18 @@ MapWrapper.prototype.addMarker = function(coordsArray, title, tags){
   });
   marker.setAnimation(google.maps.Animation.DROP)
 
-
   marker.addListener('click', function() {
     if (info) {
         info.close();
     }
-    info = new google.maps.InfoWindow({
-       content: (title) + '<IMG BORDER="0" ALIGN="Left" SRC=' + ig.firstPhoto(tags) + '>'
-     });
-    info.open(this.googleMap, marker);
-  });
-
+  ig.firstPhoto(tags, function(result){
+      info = new google.maps.InfoWindow({
+                content: (title) + '<IMG BORDER="0" ALIGN="Left" SRC=' + result + '>'
+       });
+      info.open(this.googleMap, marker);
+    });
+  
+  })
 }
 
 module.exports = MapWrapper;
