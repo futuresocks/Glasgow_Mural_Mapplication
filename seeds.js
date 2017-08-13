@@ -10,7 +10,7 @@ about: "Working with Art Pistol, Rogue-One has added to his existing portfolio o
 nearby: "This mural is in the heart of the city centre, adjacent to George Square – the principal civic square in Glasgow – and numerous transport links. Close by is Glasgow City Chambers. Completed in 1888, the City Chambers has for over a hundred years been the headquarters of successive councils serving the City of Glasgow. Free tours of the Chambers are conducted twice per day at 10.30am and 2.30pm and will accommodate anyone walking in from the street to join the tour.",
 coords: [55.861229, -4.247318],
 imageTags: "hiphopmarionettes",
-checked: false;
+checked: false
 },
 {
 id: 02,
