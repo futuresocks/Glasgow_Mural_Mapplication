@@ -21,7 +21,8 @@ MapWrapper.prototype.addMarker = function(coordsArray, title, tags){
   var ig = new ImageGetter();
   var marker = new google.maps.Marker({
     position: coords,
-    map: this.googleMap
+    map: this.googleMap,
+    icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
   });
   marker.setAnimation(google.maps.Animation.DROP)
   marker.addListener('click', function() {
@@ -30,7 +31,7 @@ MapWrapper.prototype.addMarker = function(coordsArray, title, tags){
     }
     ig.firstPhoto(tags, function(result){
       info = new google.maps.InfoWindow({
-        content: '<IMG BORDER="0" ALIGN="Left" SRC=' + result + '></br>' + (title)
+        content: '<IMG BORDER="0" ALIGN="Left" SRC=' + result + '></br>' + (title) 
       });
       info.open(this.googleMap, marker);
     });
