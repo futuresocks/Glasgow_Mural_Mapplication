@@ -30,7 +30,7 @@ MapWrapper.prototype.addMarker = function(coordsArray, title, tags){
     }
     ig.firstPhoto(tags, function(result){
       info = new google.maps.InfoWindow({
-        content: (title) + '<IMG BORDER="0" ALIGN="Left" SRC=' + result + '>'
+        content: '<IMG BORDER="0" ALIGN="Left" SRC=' + result + '></br>' + (title)
       });
       info.open(this.googleMap, marker);
     });
