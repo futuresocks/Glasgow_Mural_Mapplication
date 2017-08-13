@@ -9,6 +9,7 @@ var UI = function(){
     UI.prototype.populateChecklist(result);
   });
 
+
   var button = document.getElementById('find-nearest');
   button.addEventListener('click', function(){
     this.murals.all(function(result){
@@ -16,6 +17,7 @@ var UI = function(){
     });
   }.bind(this));
 }
+
 
 UI.prototype = {
   render: function(murals){
@@ -27,6 +29,10 @@ UI.prototype = {
     murals.forEach(function(mural){
       mainMap.addMarker(mural.coords, mural.title, mural.imageTags);
     })
+
+    var showRoute = document.getElementById('showRoute');
+    showRoute.addEventListener('click', mainMap.showRoute());
+
   },
   populateChecklist: function(murals){
     var sideNav = document.getElementById("sideList")

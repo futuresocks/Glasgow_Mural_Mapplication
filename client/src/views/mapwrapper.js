@@ -39,4 +39,19 @@ MapWrapper.prototype.addMarker = function(coordsArray, title, tags){
   this.markers.push(marker);
 }
 
+MapWrapper.prototype.showPath = function(){
+  var waypoints = [];
+  this.markers.forEach(function(marker){
+    waypoints.push(marker.getPosition());
+  })
+
+  var route = new google.maps.Polyline({
+      map: this.googlemap,
+      path: waypoints,
+      strokeColor: "#FF0000",
+      strokeOpacity: 1.0,
+      strokeWeight: 2
+  });
+}
+
 module.exports = MapWrapper;
