@@ -1,4 +1,3 @@
-var ImageGetter = require('./ImageGetter.js');
 var info;
 
 var MapWrapper = function(container, center, zoom){
@@ -15,12 +14,10 @@ MapWrapper.prototype.setCenter = function(coords){
   this.googleMap.setCenter(coords);
 }
 
-MapWrapper.prototype.addMarker = function(coordsArray, title, tags){
+MapWrapper.prototype.addMarker = function(coordsArray, title){
 
   var coords = {lat: coordsArray[0], lng: coordsArray[1]}
   var ig = new ImageGetter();
-  ig.makeRequest(tags);
-
   var marker = new google.maps.Marker({
     position: coords,
     map: this.googleMap
@@ -29,15 +26,14 @@ MapWrapper.prototype.addMarker = function(coordsArray, title, tags){
 
   marker.addListener('click', function() {
     if (info) {
-        info.close();
+      info.close();
     }
-  ig.firstPhoto(tags, function(result){
+    ig.firstPhoto(tags, function(result){
       info = new google.maps.InfoWindow({
-                content: (title) + '<IMG BORDER="0" ALIGN="Left" SRC=' + result + '>'
-       });
+        content: (title) + '<IMG BORDER="0" ALIGN="Left" SRC=' + result + '>'
+      });
       info.open(this.googleMap, marker);
     });
-  
   })
 }
 
