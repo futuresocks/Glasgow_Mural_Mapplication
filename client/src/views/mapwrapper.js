@@ -22,7 +22,7 @@ MapWrapper.prototype.addMarker = function(coordsArray, title, tags, id){
   var marker = new google.maps.Marker({
     position: coords,
     map: this.googleMap,
-    icon: 'client/assets/markers/' + id + '.png'
+    icon: 'markers/' + id + '.png'
   });
   marker.setAnimation(google.maps.Animation.DROP)
   marker.addListener('click', function() {
