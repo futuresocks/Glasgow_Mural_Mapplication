@@ -22,8 +22,8 @@ var right = 0;
   }
 
 
-  var id = setInterval(frame, 120)
-  var idRight = setInterval(frameLeft, 120)
+  var id = setInterval(frame, 100)
+  var idRight = setInterval(frameLeft, 100)
 
 
   $(document).ready(function() {
