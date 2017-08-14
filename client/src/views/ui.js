@@ -27,7 +27,7 @@ UI.prototype = {
     var mainMap = new MapWrapper(mapDiv, center, zoom);
 
     murals.forEach(function(mural){
-      mainMap.addMarker(mural.coords, mural.title, mural.imageTags);
+      mainMap.addMarker(mural.coords, mural.title, mural.imageTags, mural.id);
     })
 
     var showRoute = document.getElementById('showRoute');
