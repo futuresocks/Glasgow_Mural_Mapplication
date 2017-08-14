@@ -1,8 +1,9 @@
 use murals_list;
 
-db.murals.remove{()};
+db.murals.remove({});
 
-db.murals.insert([{
+db.murals.insert([
+{
 id: 01,
 title: "Hip Hop Marionettes",
 artist: "Rogue-one",
@@ -80,7 +81,7 @@ artist: "James Klinge",
 about: "Now working under his own name, James Klinge (aka “Klingatron”) continues his collaboration with Art Pistol whilst demonstrating the same attention to detail through his distinctive use of intricate stencil technique. However, the artist has chosen to progress his subject matter towards portraiture, a trend which has been showcased in a number of exhibitions around the world. ",
 nearby: "To the West is the Briggait; a Victorian fish-market since converted and now used as an artists’ studio and event space. To the North is the Tolbooth Clock Tower; all that remains of the original City Chambers, which was destroyed by fire in 1926. To the North-West are the independent retailers of Kings Court and Parnie Street. To the east is St Andrews in the Square, dating back to 1754 and described as one of the top six classical churches in the UK. Adjacent to the South-East is Glasgow Green, the oldest of the city’s parks having been established by Royal Grant in the 15th century. ",
 coords: [55.854816, -4.245965],
-imageTags: "",
+imageTags: "studyofawomaninblack",
 checked: false
 },
 {
@@ -204,7 +205,7 @@ artist: "Little Book Transfers",
 about: "Art Pistol and Little Book Transfers found the perfect location to continue LBT’s ‘STALK’ series depicting birds, foliage and fruit together. The graphic style and detailed illustration provides something a little different for Glasgow’s walls.",
 nearby: "To the south is the Mitchell Library, one of Europe’s largest libraries and centre of Glasgow’s public library system. To the east is Sauchiehall Street, one of Glasgow’s most famous thoroughfares, boasting a wide variety of retail, entertainment and cultural destinations.",
 coords: [55.867108, -4.271010],
-imageTags: "charing+cross mural+glasgow+trail",
+imageTags: "charing+cross+mural+glasgow+trail",
 checked: false
 },
 {

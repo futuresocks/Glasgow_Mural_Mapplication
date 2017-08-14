@@ -4,17 +4,32 @@
   <meta charset="UTF-8">
   <title>Glasgow City Mural Mapplication</title>
   <link rel="stylesheet" href="styles.css">
-  <script src="https://maps.googleapis.com/maps/api/js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?&libraries=geometry"></script>
   <script src="bundle.js"></script>
 </head>
 <body>
+  <span onclick="openNav()" class="openSideBar">Open Sidebar</span>
+  <span class="openSideBar" id="find-nearest">Find Nearest</span>
+  <span class="openSideBar" id="showRoute">Show the Trail</span>
 
-<h1>Mapplication</h1>
-  
-  <div class="map-container" id="main-map">
-      <!-- <div class="map_item"><div> -->
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <ul id="sideList"></ul>
   </div>
-  
-  
-</body>
-</html>
+  <script>
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "550px";
+    }
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }</script>
+
+
+    <h1>ArtCharter</h1>
+    <div class="map-container" id="main-map">
+      <!-- <div class="map_item"><div> -->
+    </div>
+    
+
+  </body>
+  </html>
