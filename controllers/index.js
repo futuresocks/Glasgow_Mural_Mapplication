@@ -10,6 +10,10 @@ router.get('/', function (req, res) {
   res.sendFile(path.join(__dirname + '/../client/build/index.html'));
 });
 
+router.get('/about', function (req, res) {
+  res.sendFile(path.join(__dirname + '/../client/build/about.html'));
+});
+
 router.post('/', function(req, res){
   var mural = req.body;
   // console.log(mural);
