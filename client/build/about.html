@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About MapCharter</title>
+  <link rel="icon" href="http://img.freepik.com/free-icon/painbrush-and-painter-palette_318-73016.jpg?size=338c&ext=jpg">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="buttons.css">
+  <script src="https://maps.googleapis.com/maps/api/js?&libraries=geometry"></script>
+  <script src="bundle.js"></script>
+  <script src = "animation.js"></script>
+</head>
+<!-- <body> -->
+
+
+<div id ="nav-container">
+<div onclick="openHome()" class='btn'>HomePage</div>
+</div>
+
+
+<p id="main-text">ArtCharter is a powerful web app which uncovers the untapped artistic heritage of Glasgow's thriving streets and buildings. The location of the city's finest street art and murals are brought to the user's fingertips, whilst mapping out an interesting, diverse route through Glasgow's city centre. The app is designed for locals and visitors alike as the city artwork contains multiple hidden gems that even many locals have not yet discovered.</p>
+<!-- <audio preload="auto">
+    <source src="https://github.com/nclud/2011.beercamp.com/blob/gh-pages/audio/inception.mp3?raw=true" type="audio/mp3" />
+</audio> -->
+<div id="header"></div>
+<div id ="links-container">
+<div class="github-links">ArtCharter is Powered By:</div>
+<div class="github-links"><a href="https://github.com/CrawfordD1">Crawford Davidson</a></div>
+<div class="github-links"><a href="https://github.com/futuresocks">Colin Bell</a></div>
+<div class="github-links"><a href="https://github.com/johnallan78">John Allan</a></div>
+</div>
+
+<div class='container'>
+
+
+      <div class='example relative'>
+        
+        <div class='item item-right'><img src='https://peoplemakeglasgow.com/images/Article_Images/Taxi-mural.jpg' /></div>
+       
+    </div>
+  </div>
+  <div class='item item-left'><img src='http://res.cloudinary.com/jpress/image/fetch/w_700,f_auto,ar_3:2,c_fill/http://www.scotsman.com/webimage/1.4033416.1455726224!/image/2991354350.jpg' /></div></div>
+
+  
+
+  <script> 
+  function openHome() {
+    window.location.replace("./index.html");
+  }
+  document.getElementById("links-container").onclick = (function() {
+       document.getElementsByTagName('audio')[0].play();
+       return false;
+   });
+  </script>
+
+<!-- </body> -->
+
+</html>
