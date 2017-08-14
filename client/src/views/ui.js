@@ -7,8 +7,8 @@ var UI = function(){
   this.murals.all(function(result){
     UI.prototype.render(result);
     UI.prototype.populateChecklist(result);
+    UI.prototype.showInfoPopup(result);
   });
-
 
   var button = document.getElementById('find-nearest');
   button.addEventListener('click', function(){
@@ -27,7 +27,7 @@ UI.prototype = {
     var mainMap = new MapWrapper(mapDiv, center, zoom);
 
     murals.forEach(function(mural){
-      mainMap.addMarker(mural.coords, mural.title, mural.imageTags, mural.id);
+      mainMap.addMarker(mural.coords, mural, mural.imageTags, mural.id);
     })
 
     var showRoute = document.getElementById('showRoute');
@@ -89,36 +89,94 @@ UI.prototype = {
      request.send(postData);
    },
    findClosest: function(murals){
-      var options = {
-        enableHighAccuracy: true,
-        timeout: 5000,
-        maximumAge: 0
-      };
+    var options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    };
 
-      function success(pos) {
-        var p1 = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-        var lowest = 0;
-        var title = murals[0].title;
-        for(var i = 0; i<murals.length; i++){
-          var p2 = new google.maps.LatLng(murals[i].coords[0], murals[i].coords[1]);
-          var distance = google.maps.geometry.spherical.computeDistanceBetween(p1, p2)
-          if(i === 0){
-            lowest = distance;
-            title = murals[i].title;
-          }if(distance < lowest){
-            lowest = distance;
-            title = murals[i].title;
-          }
+    function success(pos) {
+      var p1 = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+      var lowest = 0;
+      var title = murals[0].title;
+      for(var i = 0; i<murals.length; i++){
+        var p2 = new google.maps.LatLng(murals[i].coords[0], murals[i].coords[1]);
+        var distance = google.maps.geometry.spherical.computeDistanceBetween(p1, p2)
+        if(i === 0){
+          lowest = distance;
+          title = murals[i].title;
+        }if(distance < lowest){
+          lowest = distance;
+          title = murals[i].title;
         }
-        alert(title);
-      };
-      function error(err) {
-        console.warn(`ERROR(${err.code}): ${err.message}`);
+      }
+      alert(title);
+    };
+    function error(err) {
+      console.warn(`ERROR(${err.code}): ${err.message}`);
+    };
+
+    navigator.geolocation.getCurrentPosition(success.bind(this), error, options);
+  },
+  showInfoPopup: function(murals){
+    var modal = document.getElementById('myModal');
+    var content = document.getElementById('modal-content');
+
+    var btn = document.getElementById("myBtn");
+    
+
+    btn.addEventListener('click', function(mural){
+      modal.style.display = "block";
+      var container = document.getElementById('muralText');
+      var muralObject  =  {
+        title: this.getAttribute('title'),
+        artist: this.getAttribute('artist'),
+        about: this.getAttribute('about'),
+        nearby: this.getAttribute('nearby'),
+        image: this.getAttribute('image')
       };
 
-      navigator.geolocation.getCurrentPosition(success.bind(this), error, options);
+      while (container.firstChild) {
+          container.removeChild(container.firstChild);
+      }
+
+      //<span class="close">&times;</span>
+      var closeButton = document.createElement('span');
+      closeButton.class = close;
+      closeButton.innerText = 'X';
+
+      var image = document.createElement('img');
+      var title = document.createElement('p');
+      var artist = document.createElement('p');
+      var about = document.createElement('p');
+
+      image.src = muralObject.image;
+      title.innerText = muralObject.title;
+      artist.innerText = muralObject.artist;
+      about.innerText = muralObject.about;
+
+      container.appendChild(closeButton);
+      container.appendChild(image);
+      container.appendChild(title);
+      container.appendChild(artist);
+      container.appendChild(about);
+      
+    });
+
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
   }
-  
 }
 
 module.exports = UI;

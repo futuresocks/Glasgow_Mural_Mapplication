@@ -26,7 +26,7 @@ var ImageGetter = function(){
         var jsonString = this.responseText;
         var data = JSON.parse(jsonString);
         var photo = data.photos.photo[0];
-        var url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_t.jpg";
+        var url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + ".jpg";
         callback(url);
       })
     },
