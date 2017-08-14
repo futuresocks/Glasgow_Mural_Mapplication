@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans');
+
+@font-face {
+    font-family: 'dense';
+    src: url('fonts/Dense-Regular.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+.btn {
+  background: #3498db;
+  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: dense;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 5px 20px 5px 20px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
+
+
+a {
+  text-decoration: none;
+  color: firebrick;
+  font-family: dense;
+}
+
+a:hover {
+  font-size: 1.7em;
+}
+
+p {
+  display: flex;
+  justify-content: center;
+  font-family: dense;
+  font-size: 2em;
+  margin-left: 30px;
+  margin-right: 30px;
+  text-align: justify;
+}
+
+#header {
+  background-image: url("http://commonpurpose.org/media/2653/glasgow-compressor.jpg?center=0.38576779026217228,0.5325&mode=crop&quality=90&width=1120&heightratio=0.2895705521472392638036809816&slimmage=true&rnd=130917982490000000");
+      background-repeat: no-repeat;
+}
+
+ #main-text {
+  text-align: justify;
+  color: firebrick;
+  font-size: 2em;
+  z-index: 100;
+}
+
+#links-container {
+  display: flex;
+  justify-content: flex-start;
+  z-index: 1000;
+}
+
+.github-links {
+  font-size: 1.5em;
+  padding-right: 15px;
+}
+
+#nav-container{
+    display: flex;
+    justify-content: center;
+    font-family: dense;
+}
+
+.example {
+  display: flex;
+  justify-content: center;
+  
+  width: 600px;
+  margin: 50px 0;
+
+}
+
+.item img {
+  display: block;
+  opacity: 0.65;
+}
+
+.item-right {
+  position: relative;
+  top: 10px;
+  left: 30px;
+  
+}
+
+.item-left {
+  position: relative;
+  top: 15px;
+  right: 30px;
+  
+}
+
+
+
+
+
+
+
+
