@@ -13,12 +13,17 @@
   <span onclick="openNav()" class="openSideBar">Open Sidebar</span>
   <span class="openSideBar" id="find-nearest">Find Nearest</span>
   <span class="openSideBar" id="showRoute">Show the Trail</span>
+
   <span onclick="openAbout()" class="openSideBar">About</span>
 </div>
+
+  <button id="myBtn" type="button" style= "display: none;"></button>
+
   <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <ul id="sideList"></ul>
   </div>
+
   <script>
     function openNav() {
       document.getElementById("mySidenav").style.width = "550px";
@@ -35,7 +40,14 @@
    <div class="main-header"> <h1>ArtCharter</h1>
    </div>
     <div class="map-container" id="main-map">
-      <!-- <div class="map_item"><div> -->
+    </div>
+
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div id='modal-content' class="modal-content">
+        <span class="close">&times;</span>
+        <div id="muralText"></div>
+      </div>
     </div>
     
 
