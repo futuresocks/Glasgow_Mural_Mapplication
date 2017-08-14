@@ -31,6 +31,8 @@ UI.prototype = {
       this.mainMap.addMarker(mural.coords, mural, mural.imageTags, mural.id);
     }.bind(this))
 
+    this.mainMap.showRoute();
+
     var showRoute = document.getElementById('showRoute');
     showRoute.addEventListener('click', this.mainMap.showRoute());
 

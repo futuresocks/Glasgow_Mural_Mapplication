@@ -47,19 +47,46 @@ MapWrapper.prototype.addMarker = function(coordsArray, mural, tags, id){
 }
 
 
-MapWrapper.prototype.showRoute = function(){
+MapWrapper.prototype.getPathCoords = function(){
   var waypoints = [];
   this.markers.forEach(function(marker){
     waypoints.push(marker.getPosition());
-  })
-
-  var route = new google.maps.Polyline({
-      map: this.googlemap,
-      path: waypoints,
-      strokeColor: "#FF0000",
-      strokeOpacity: 1.0,
-      strokeWeight: 2
   });
+  // the following uses a regex to strip the waypoints of all non-required symbols
+  var path = "points=" + waypoints.join("|").replace(/[^0-9\.,-|]/g, "");
+  return path;
+}
+
+MapWrapper.prototype.sendRoute = function(callback){
+  var coordsPath = this.getPathCoords();
+  var request = new XMLHttpRequest();
+  request.open('GET', "https://roads.googleapis.com/v1/nearestRoads?" + coordsPath + "&key=AIzaSyABlvOoV4fdwNU5j_ueBT-0-BROqg51Gw0");
+  request.addEventListener('load', callback);
+  request.send();
+}
+
+MapWrapper.prototype.showRoute = function(){
+  var finalWaypoints = [];
+  var that = this;
+  this.sendRoute(function(){
+    if(this.status !== 200)return;
+    var jsonString = this.responseText;
+    var data = JSON.parse(jsonString);
+
+    for (point of data.snappedPoints){
+      var snappedPathCoords = new google.maps.LatLng(point.location.latitude, point.location.longitude);
+      finalWaypoints.push(snappedPathCoords)};
+
+      var route = new google.maps.Polyline({
+        map: this.googlemap,
+        path: finalWaypoints,
+        strokeColor: "#FF0000",
+        strokeOpacity: 1.0,
+        strokeWeight: 2
+      })
+      route.setMap(that.googleMap);
+
+    })
 }
 
 module.exports = MapWrapper;
