@@ -6,7 +6,7 @@ var right = 0;
     var element = document.querySelector('.item-right');
     left += 1;
     element. style.left = left + 'px';
-    if (left >= 150) {
+    if (left >= 100) {
       clearInterval(id)
     }
   }
@@ -16,7 +16,7 @@ var right = 0;
     var element = document.querySelector('.item-left');
     right += 1;
     element. style.right = right + 'px';
-    if (right >= 150) {
+    if (right >= 100) {
       clearInterval(idRight)
     }
   }
