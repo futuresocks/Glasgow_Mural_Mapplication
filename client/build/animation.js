@@ -16,7 +16,7 @@ var top = 0;
     var element = document.querySelector('.item-left');
     right += 1;
     element. style.right = right + 'px';
-    if (right >= 800) {
+    if (right >= 300) {
       clearInterval(idRight)
     }
   }
