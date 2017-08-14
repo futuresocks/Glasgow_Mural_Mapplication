@@ -88,11 +88,11 @@ p {
   z-index: 100;
 }
 
-#links-container {
+/*#links-container {
   display: flex;
   justify-content: flex-start;
   z-index: 1000;
-}
+}*/
 
 .github-links {
   font-size: 1.5em;
