@@ -9,6 +9,15 @@ var UI = function(){
     UI.prototype.populateChecklist(result);
     UI.prototype.showInfoPopup(result);
   });
+
+  var button = document.getElementById('find-nearest');
+  button.addEventListener('click', function(){
+    murals.all(function(result){
+      UI.prototype.findClosest(result);
+    });
+  })
+
+
 }
 
 UI.prototype = {
