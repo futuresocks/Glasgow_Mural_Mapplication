@@ -15,14 +15,14 @@ MapWrapper.prototype.setCenter = function(coords){
   this.googleMap.setCenter(coords);
 }
 
-MapWrapper.prototype.addMarker = function(coordsArray, title, tags){
+MapWrapper.prototype.addMarker = function(coordsArray, title, tags, id){
 
   var coords = {lat: coordsArray[0], lng: coordsArray[1]}
   var ig = new ImageGetter();
   var marker = new google.maps.Marker({
     position: coords,
     map: this.googleMap,
-    icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+    icon: 'markers/' + id + '.png'
   });
   marker.setAnimation(google.maps.Animation.DROP)
   marker.addListener('click', function() {
@@ -39,7 +39,7 @@ MapWrapper.prototype.addMarker = function(coordsArray, title, tags){
   this.markers.push(marker);
 }
 
-MapWrapper.prototype.showPath = function(){
+MapWrapper.prototype.showRoute = function(){
   var waypoints = [];
   this.markers.forEach(function(marker){
     waypoints.push(marker.getPosition());
