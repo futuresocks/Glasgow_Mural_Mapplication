@@ -23,3 +23,6 @@ var top = 0;
 
   var id = setInterval(frame, 8)
   var idRight = setInterval(frameLeft, 8)
+
+
+  

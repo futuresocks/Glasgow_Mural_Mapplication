@@ -56,14 +56,14 @@ p {
 }
 
 #header {
-  color :goldenrod;
-  font-size: 2.5em;
+  background-image: url("http://commonpurpose.org/media/2653/glasgow-compressor.jpg?center=0.38576779026217228,0.5325&mode=crop&quality=90&width=1120&heightratio=0.2895705521472392638036809816&slimmage=true&rnd=130917982490000000");
+      background-repeat: no-repeat;
 }
 
  #main-text {
   text-align: justify;
-  color: #FFE4B5;
-  font-size: 3.5em;
+  color: firebrick;
+  font-size: 2em;
   z-index: 100;
 }
 
@@ -81,6 +81,7 @@ p {
     display: flex;
     justify-content: center;
     font-family: dense;
+    
 
 }
 
@@ -107,9 +108,27 @@ p {
 
 .item-left {
   position: relative;
-  top: 30px;
+  top: 190px;
   right: 30px;
   border: 1px solid black;
+}
+
+#digit {
+  width: .5em;
+  overflow: hidden;
+  font: 32px monospace;
+  cursor: pointer;
+}
+
+#stripe {
+  display: inline-block
+}
+
+#stripe.animate {
+  transform: translate(-90%);
+  transition-property: transform;
+  transition-duration: 9s;
+  transition-timing-function: linear;
 }
 
 

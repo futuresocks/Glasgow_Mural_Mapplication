@@ -13,22 +13,18 @@ html {
 }
 
 body {
-  background-color: #1d2c4d;
+
+  background-color: moccasin;
   display: flex;
   flex-direction: column;
   justify-content: center;
   height: 100%;
   overflow: auto;
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+36,2989d8+50,207cca+71,7db9e8+100 */
-  background: rgb(30,87,153); /* Old browsers */
-  background: -moz-linear-gradient(top, rgba(30,87,153,1) 36%, rgba(41,137,216,1) 50%, rgba(32,124,202,1) 71%, rgba(125,185,232,1) 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, rgba(30,87,153,1) 36%,rgba(41,137,216,1) 50%,rgba(32,124,202,1) 71%,rgba(125,185,232,1) 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, rgba(30,87,153,1) 36%,rgba(41,137,216,1) 50%,rgba(32,124,202,1) 71%,rgba(125,185,232,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=0 ); /* IE6-9 */
+  
 }
 
 .main-header {
-    font-size: 1.5em;
+    font-size: 2.25em;
     font-family: dense;
     color: goldenrod;
     display: flex;
@@ -40,18 +36,19 @@ body {
     display: flex;
     width: 90%;
     height: 620px;
-
-
     border: 3px solid #424242;
-
     margin: auto;
 }
 
+.nav-bar{
+    display: flex;
+    justify-content: space-around;
+}
+
 .openSideBar{
-    font-size: 20px;
-    background-color: black;
-    color: white;
-    width: 150px;
+    font-size: 25px;
+    color: black;
+    /*width: 150px;*/
     height: 30px;
     font-family: 'dense';
 
