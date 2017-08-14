@@ -51,6 +51,26 @@ h1 {
     padding-bottom: 100px;
 }
 
+.info-window{
+    display: flex;
+    flex-direction: column;
+}
+.info-window h5{
+    margin-top: 1px;
+    margin-bottom: 2px;
+}
+.info-window h3{
+    margin: 5px;
+}
+
+.gm-style .gm-style-iw {
+   font-family: 'dense';
+   color: #3e3a3a;
+   font-size: 25px;
+   font-weight: bold;
+   text-transform: uppercase;
+}
+
 .openSideBar{
     font-size: 35px;
     color: white;
@@ -148,11 +168,37 @@ h1 {
 
 /* Modal Content/Box */
 .modal-content {
-    background-color: #fefefe;
+    font-family: 'dense';
+    /*background-color: #3e3a3a;*/
+    background-image: url('images/infoBG.png');
+    background-size: contain;
+    color: white;
+    font-size: 30px;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.muralText{
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-flex-flow: column wrap;
+    flex-flow: column wrap;
+    -webkit-align-content: center;
+    align-content: center;
+
+
+}
+
+.muralText h3 h5{
+    margin-bottom: 1px;
+    margin-top: 1px;
+    padding: 0px;
 }
 
 /* The Close Button */
