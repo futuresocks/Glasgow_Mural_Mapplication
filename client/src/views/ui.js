@@ -16,8 +16,6 @@ var UI = function(){
       UI.prototype.findClosest(result);
     });
   }.bind(this));
-
-
 }
 
 
@@ -125,7 +123,7 @@ UI.prototype = {
     var content = document.getElementById('modal-content');
 
     var btn = document.getElementById("myBtn");
-    var span = document.getElementsByClassName("close")[0];
+    
 
     btn.addEventListener('click', function(mural){
       modal.style.display = "block";
@@ -138,6 +136,15 @@ UI.prototype = {
         image: this.getAttribute('image')
       };
 
+      while (container.firstChild) {
+          container.removeChild(container.firstChild);
+      }
+
+      //<span class="close">&times;</span>
+      var closeButton = document.createElement('span');
+      closeButton.class = close;
+      closeButton.innerText = 'X';
+
       var image = document.createElement('img');
       var title = document.createElement('p');
       var artist = document.createElement('p');
@@ -148,12 +155,15 @@ UI.prototype = {
       artist.innerText = muralObject.artist;
       about.innerText = muralObject.about;
 
+      container.appendChild(closeButton);
       container.appendChild(image);
       container.appendChild(title);
       container.appendChild(artist);
       container.appendChild(about);
       
     });
+
+    var span = document.getElementsByClassName("close")[0];
 
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
