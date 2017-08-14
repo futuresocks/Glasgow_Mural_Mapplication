@@ -5,7 +5,7 @@ var ImageGetter = function(){
   ImageGetter.prototype = {
     makeRequest: function(string, callback){
       var request = new XMLHttpRequest();
-      request.open('GET', "https://api.flickr.com/services/rest/?&method=flickr.photos.search&api_key=e83c635ab5aca5ad0990f1d779a36309&tags=" + string + "&format=json&nojsoncallback=1");
+      request.open('GET', "https://api.flickr.com/services/rest/?&method=flickr.photos.search&api_key=e83c635ab5aca5ad0990f1d779a36309&text=" + string + "&format=json&nojsoncallback=1");
       request.addEventListener('load', callback);
       request.send();
     },
@@ -26,7 +26,8 @@ var ImageGetter = function(){
         var jsonString = this.responseText;
         var data = JSON.parse(jsonString);
         var photo = data.photos.photo[0];
-        var url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_q.jpg";
+
+        var url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + ".jpg";
         callback(url);
       })
     },
