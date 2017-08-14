@@ -21,8 +21,10 @@ var top = 0;
     }
   }
 
+
   var id = setInterval(frame, 45)
   var idRight = setInterval(frameLeft, 50)
+
 
 
   
