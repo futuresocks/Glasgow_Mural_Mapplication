@@ -9,12 +9,15 @@
 
 
 html {
+    overflow: visibile;
     /*overflow: hidden;*/
     height: 100%;
 }
 
 body {
-  background-color: #1d2c4d;
+  /*background-color: #252323;*/
+  background-image: url('images/MainBG.png');
+  background-size: cover;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -23,33 +26,37 @@ body {
 }
 
 h1 {
+    visibility: hidden;
     font-family: 'dense';
-    font-color: 'goldenrod';
+    font-size: 60px;
+    color: goldenrod;
     display: flex;
     justify-content:center;
+}
 
+.nav-bar{
+    display: flex;
+    justify-content: space-around;
+    padding: 30px;
 }
 
 
 .map-container {
     display: flex;
-    width: 90%;
-    height: 620px;
-
-
-    border: 3px solid #424242;
-
+    width: 95%;
+    height: 610px;
+    border: 3px solid goldenrod;
+    
     margin: auto;
+    padding-bottom: 100px;
 }
 
 .openSideBar{
-    font-size: 20px;
-    background-color: black;
+    font-size: 35px;
     color: white;
-    width: 150px;
     height: 30px;
     font-family: 'dense';
-
+    margin-top: 50px;
 }
 
 
@@ -62,7 +69,8 @@ h1 {
     z-index: 1; /* Stay on top */
     top: 0;
     right: 0;
-    background-color: #111;  /*Black*/
+    /*background-color: #111;  /*Black*/
+    background-image: url('images/SideBarBackground.png');
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 60px; /* Place content 60px from the top */
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
@@ -74,18 +82,30 @@ h1 {
     padding-left: 0px;
 }
 
+.sidenav h2{
+    font-family: 'dense';
+    font-size: 50px;
+    color: white;
+    padding-left: 30px;
+    padding-bottom: 10px;
+    margin-left: 30px;
+    padding-left: 0px;
+    margin-top: 20px;
+}
+
 /* The navigation menu links */
 .sidenav li {
+    font-family: 'dense';
     padding: 8px 8px 8px 32px;
     text-decoration: none;
-    font-family: 'Noto Sans', sans-serif;
-    font-size: 20px;
+    font-size: 25px;
     color: #818181;
     display: block;
     text-indent: 50px;
     background-size:100%;
     transition: 0.3s;
     margin-left: 0px;
+    padding-top: 7px;
 }
 
 /* When you mouse over the navigation links, change their color */

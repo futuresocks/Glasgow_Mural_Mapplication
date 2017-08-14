@@ -143,7 +143,6 @@ UI.prototype = {
       //<span class="close">&times;</span>
       var closeButton = document.createElement('span');
       closeButton.class = close;
-      closeButton.innerText = 'X';
 
       var image = document.createElement('img');
       var title = document.createElement('p');

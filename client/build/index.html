@@ -8,14 +8,20 @@
   <script src="bundle.js"></script>
 </head>
 <body>
-  <span onclick="openNav()" class="openSideBar">Open Sidebar</span>
-  <span class="openSideBar" id="find-nearest">Find Nearest</span>
-  <span class="openSideBar" id="showRoute">Show the Trail</span>
+
+  <div class="nav-bar">
+    <span onclick="openNav()" class="openSideBar">Open Checklist</span>
+    <span class="openSideBar" id="find-nearest">Find Nearest</span>
+    <h1>ArtCharter</h1>
+    <span class="openSideBar" id="showRoute">Show the Trail</span>
+    <span class="openSideBar" onclick="openAbout()">About</span>
+  </div>
 
   <button id="myBtn" type="button" style= "display: none;"></button>
 
 
   <div id="mySidenav" class="sidenav">
+  <h2>Mural Checklist</h2> 
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <ul id="sideList"></ul>
   </div>
@@ -26,10 +32,14 @@
     }
     function closeNav() {
       document.getElementById("mySidenav").style.width = "0";
-    }</script>
+    }
+    function openAbout() {
+      // window.location.replace("./about.html");
+    }
+    </script>
 
 
-    <h1>ArtCharter</h1>
+    
     <div class="map-container" id="main-map">
     </div>
 
