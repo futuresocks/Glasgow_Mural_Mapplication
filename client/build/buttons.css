@@ -69,7 +69,8 @@ p {
 
 #links-container {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  z-index: 1000;
 }
 
 .github-links {
@@ -81,8 +82,6 @@ p {
     display: flex;
     justify-content: center;
     font-family: dense;
-    
-
 }
 
 .example {
@@ -101,35 +100,21 @@ p {
 
 .item-right {
   position: relative;
-  top: 30px;
+  top: 10px;
   left: 30px;
-  border: 1px solid black;
+  
 }
 
 .item-left {
   position: relative;
-  top: 190px;
+  top: 15px;
   right: 30px;
-  border: 1px solid black;
+  
 }
 
-#digit {
-  width: .5em;
-  overflow: hidden;
-  font: 32px monospace;
-  cursor: pointer;
-}
 
-#stripe {
-  display: inline-block
-}
 
-#stripe.animate {
-  transform: translate(-90%);
-  transition-property: transform;
-  transition-duration: 9s;
-  transition-timing-function: linear;
-}
+
 
 
 
