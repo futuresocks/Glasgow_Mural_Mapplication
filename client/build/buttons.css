@@ -21,7 +21,7 @@
   font-family: dense;
   color: #ffffff;
   font-size: 20px;
-  padding: 5px 20px 10px 20px;
+  padding: 5px 20px 20px 20px;
   text-decoration: none;
 }
 
@@ -62,8 +62,8 @@ p {
 
  #main-text {
   text-align: justify;
-  color: antiquewhite;
-  font-size: 2.5em;
+  color: #FFE4B5;
+  font-size: 3.5em;
   z-index: 100;
 }
 
@@ -102,12 +102,14 @@ p {
   position: relative;
   top: 30px;
   left: 30px;
+  border: 1px solid black;
 }
 
 .item-left {
   position: relative;
   top: 30px;
   right: 30px;
+  border: 1px solid black;
 }
 
 
