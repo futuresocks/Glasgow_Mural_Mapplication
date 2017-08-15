@@ -48,7 +48,7 @@ MapWrapper.prototype.addMarker = function(coordsArray, mural, tags, id){
     }
     ig.firstPhoto(tags, function(result){
       info = new google.maps.InfoWindow({
-        content: '<div class="info-window"><IMG BORDER="0" ALIGN="Left" style="width: 200px" SRC=' + result + '></hl><h3>' + (mural.id + ': ' + mural.title) + '</h3><h5> Artist: '+ mural.artist +'</h5><h5>Status: ' + seen + '</h5><button type="button" onclick="var button = document.getElementById(\'myBtn\'); button.setAttribute(\'title\',\'' + mural.title +'\'); button.setAttribute(\'artist\',\'' + mural.artist +'\'); button.setAttribute(\'about\',\'' + mural.about +'\'); button.setAttribute(\'nearby\',\'' + mural.nearby +'\'); button.setAttribute(\'image\',\'' + result +'\'); button.click();">More Info</button></div>'
+        content: '<div class="info-window"><IMG BORDER="0" ALIGN="Left" style="width: 200px" SRC=' + result + '></hl><h3>' + (mural.id + ': ' + mural.title) + '</h3><h5> Artist: <a href=' + mural.artistWebsite + '>' + mural.artist + '</a></h5><h5>Status: ' + seen + '</h5><button type="button" onclick="var button = document.getElementById(\'myBtn\'); button.setAttribute(\'title\',\'' + mural.title +'\'); button.setAttribute(\'artist\',\'' + mural.artist +'\'); button.setAttribute(\'about\',\'' + mural.about +'\'); button.setAttribute(\'nearby\',\'' + mural.nearby +'\'); button.setAttribute(\'image\',\'' + result +'\'); button.click();">More Info</button></div>'
       });
       info.open(this.googleMap, marker);
     });
