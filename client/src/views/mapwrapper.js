@@ -32,9 +32,9 @@ MapWrapper.prototype.addMarker = function(coordsArray, mural, tags, id){
     if (info) {
       info.close();
     }
-    var seen = "Not Spotted!"
+    var seen = " ✗ "
     if (mural.checked){
-      seen = "Spotted!"
+      seen = " ✓ "
     }
     ig.firstPhoto(tags, function(result){
       info = new google.maps.InfoWindow({
