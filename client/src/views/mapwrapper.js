@@ -73,32 +73,38 @@ MapWrapper.prototype.sendRoute = function(callback){
   var destination = this.getDestination();
   var waypoints = this.getWaypoints();
   var request = new XMLHttpRequest();
-  request.open('GET', "https://maps.googleapis.com/maps/api/directions/json?origin=" + origin + "&destination=" + destination + waypoints + "&key=AIzaSyAFHPuQ6E7xLZH1i5Vgue5TpRAA4uKmpvI");
+  request.open('GET', "https://maps.googleapis.com/maps/api/directions/json?origin=" + origin + "&destination=" + destination + waypoints + "&mode=walking&key=AIzaSyBiatraSG2kuxTJjVxj76psGIY5o7_rSsk");
   request.addEventListener('load', callback);
   request.send();
 }
 
 MapWrapper.prototype.showRoute = function(){
   var finalWaypoints = [];
+  finalWaypoints.push(this.markers[0].getPosition());
   var that = this;
   this.sendRoute(function(){
     if(this.status !== 200)return;
     var jsonString = this.responseText;
     var data = JSON.parse(jsonString);
     console.log(data);
+    var legs = data.routes[0].legs;
 
-    // for (point of data.snappedPoints){
-    //   var snappedPathCoords = new google.maps.LatLng(point.location.latitude, point.location.longitude);
-    //   finalWaypoints.push(snappedPathCoords)};
+    for (leg of legs){
+      for(step of leg.steps){
+      // var legStart = new google.maps.LatLng(step.start_location.lat, step.start_location.lng);
+      var legEnd = new google.maps.LatLng(step.end_location.lat, step.end_location.lng);
+      // finalWaypoints.push(legStart);
+      finalWaypoints.push(legEnd);}
+    }
 
-    //   var route = new google.maps.Polyline({
-    //     map: this.googlemap,
-    //     path: finalWaypoints,
-    //     strokeColor: "#FF0000",
-    //     strokeOpacity: 1.0,
-    //     strokeWeight: 2
-    //   })
-    //   route.setMap(that.googleMap);
+      var route = new google.maps.Polyline({
+        map: this.googlemap,
+        path: finalWaypoints,
+        strokeColor: "#FF0000",
+        strokeOpacity: 1.0,
+        strokeWeight: 2
+      })
+      route.setMap(that.googleMap);
 
     })
 }
