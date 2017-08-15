@@ -155,6 +155,8 @@ UI.prototype = {
       closeButton.class = close;
       closeButton.InnerText = "X";
 
+      var headingsDiv = document.getElementById('headingsText');
+
       var image = document.createElement('img');
       var title = document.createElement('h3');
       var artist = document.createElement('h5');
@@ -174,13 +176,21 @@ UI.prototype = {
 
       container.appendChild(closeButton);
       container.appendChild(image);
-      container.appendChild(title);
-      container.appendChild(artist);
-      container.appendChild(aboutHeading);
-      container.appendChild(about);
-      container.appendChild(lineBreak);
-      container.appendChild(nearbyHeading);
-      container.appendChild(nearby);
+      container.appendChild(headingsDiv);
+      headingsDiv.appendChild(title);
+      headingsDiv.appendChild(artist);
+      headingsDiv.appendChild(aboutHeading);
+      aboutHeading.appendChild(about);
+      headingsDiv.appendChild(lineBreak);
+      headingsDiv.appendChild(nearbyHeading);
+      nearbyHeading.appendChild(nearby);
+      // container.appendChild(title);
+      // container.appendChild(artist);
+      // container.appendChild(aboutHeading);
+      // container.appendChild(about);
+      // container.appendChild(lineBreak);
+      // container.appendChild(nearbyHeading);
+      // container.appendChild(nearby);
       
     });
 
