@@ -166,7 +166,7 @@ UI.prototype = {
       
       var image = document.createElement('img');
       var title = document.createElement('h2');
-      var artist = document.createElement('h3');
+      // var artist = document.createElement('h2');
       var aboutHeading = document.createElement('h7');
       var about = document.createElement('h7');
       var nearbyHeading = document.createElement('h7');
@@ -174,8 +174,8 @@ UI.prototype = {
       var lineBreak = document.createElement('br');
 
       image.src = muralObject.image;
-      title.innerText = muralObject.title;
-      artist.innerText = muralObject.artist;
+      title.innerText = muralObject.title + " by " + muralObject.artist;
+      // artist.innerText = muralObject.artist;
       aboutHeading.innerText = ("About: ");
       about.innerText = (muralObject.about);
       nearbyHeading.innerText = ("Nearby: ");
@@ -185,7 +185,7 @@ UI.prototype = {
       container.appendChild(image);
       container.appendChild(headingsDiv);
       headingsDiv.appendChild(title);
-      headingsDiv.appendChild(artist);
+      // headingsDiv.appendChild(artist);
       headingsDiv.appendChild(aboutHeading);
       aboutHeading.appendChild(about);
       headingsDiv.appendChild(lineBreak);
