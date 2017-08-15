@@ -119,6 +119,10 @@ iframe {
   z-index: 1000;
 }
 
+/* #headingsText>h5 {
+  font-size: 1.5em;
+}
+*/
 .github-links {
   font-family: dense;
   font-size: 1.5em;

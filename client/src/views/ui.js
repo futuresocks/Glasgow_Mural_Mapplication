@@ -163,8 +163,8 @@ UI.prototype = {
 
       
       var image = document.createElement('img');
-      var title = document.createElement('h3');
-      var artist = document.createElement('h5');
+      var title = document.createElement('h2');
+      var artist = document.createElement('h3');
       var aboutHeading = document.createElement('h7');
       var about = document.createElement('h7');
       var nearbyHeading = document.createElement('h7');

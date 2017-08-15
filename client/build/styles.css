@@ -34,6 +34,10 @@ h1 {
     justify-content:center;
 }
 
+h2 {
+    text-decoration: underline;
+}
+
 .nav-bar{
     display: flex;
     justify-content: space-around;
@@ -191,6 +195,7 @@ h1 {
     flex-flow: flex-wrap;
     -webkit-align-content: center;
     align-content: center;
+    color: lightcyan;
 }
 
 .muralText img {
