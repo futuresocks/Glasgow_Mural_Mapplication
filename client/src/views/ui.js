@@ -189,15 +189,7 @@ UI.prototype = {
       headingsDiv.appendChild(lineBreak);
       headingsDiv.appendChild(nearbyHeading);
       nearbyHeading.appendChild(nearby);
-      // container.appendChild(title);
-      // container.appendChild(artist);
-      // container.appendChild(aboutHeading);
-      // container.appendChild(about);
-      // container.appendChild(lineBreak);
-      // container.appendChild(nearbyHeading);
-      // container.appendChild(nearby);
-      
-    });
+   });
 
     var span = document.getElementsByClassName("close")[0];
 

@@ -9,7 +9,7 @@
 
 
 body {
-  background-image: url('images/MainBG.png');
+  background-image: url('images/infoBG.png');
   background-size: cover; 
   display: flex;
   flex-direction: column;
@@ -132,34 +132,7 @@ iframe {
     font-family: dense;
 }
 
-.example {
-  display: flex;
-  justify-content: center;
-}
 
-.item img {
-  /*display: block;*/
-  opacity: 0.4;
-  padding-top: 125px;
-}
-
-.item-right {
-  /*position: relative;*/
-  top: 100px;
-  left: 30px;
-  /*height: 200px;
-  width: 200px;*/
-  z-index: 1;
-}
-
-.item-left {
-  /*position: relative;*/
-  top: 10px;
-  right: 30px;
-  /*height: 200px;
-  width: 200px;*/
-  z-index: 1;
-}
 
 
 
