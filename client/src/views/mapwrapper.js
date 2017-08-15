@@ -46,21 +46,34 @@ MapWrapper.prototype.addMarker = function(coordsArray, mural, tags, id){
   this.markers.push(marker);
 }
 
+MapWrapper.prototype.getOrigin = function(){
+  var origin = this.markers[0].getPosition();
+  return origin.toString().replace(/[^0-9\.,-|]/g, "");
+}
 
-MapWrapper.prototype.getPathCoords = function(){
+MapWrapper.prototype.getDestination = function(){
+  var destination = this.markers[this.markers.length-1].getPosition();
+  return destination.toString().replace(/[^0-9\.,-|]/g, "");
+}
+
+MapWrapper.prototype.getWaypoints = function(){
   var waypoints = [];
   this.markers.forEach(function(marker){
     waypoints.push(marker.getPosition());
   });
+  waypoints.splice(0, 1);
+  waypoints.splice(waypoints.length-1, 1);
   // the following uses a regex to strip the waypoints of all non-required symbols
-  var path = "points=" + waypoints.join("|").replace(/[^0-9\.,-|]/g, "");
+  var path = "&waypoints=" + waypoints.join("|").replace(/[^0-9\.,-|]/g, "");
   return path;
 }
 
 MapWrapper.prototype.sendRoute = function(callback){
-  var coordsPath = this.getPathCoords();
+  var origin = this.getOrigin();
+  var destination = this.getDestination();
+  var waypoints = this.getWaypoints();
   var request = new XMLHttpRequest();
-  request.open('GET', "https://roads.googleapis.com/v1/nearestRoads?" + coordsPath + "&key=AIzaSyABlvOoV4fdwNU5j_ueBT-0-BROqg51Gw0");
+  request.open('GET', "https://maps.googleapis.com/maps/api/directions/json?origin=" + origin + "&destination=" + destination + waypoints + "&key=AIzaSyAFHPuQ6E7xLZH1i5Vgue5TpRAA4uKmpvI");
   request.addEventListener('load', callback);
   request.send();
 }
@@ -72,19 +85,20 @@ MapWrapper.prototype.showRoute = function(){
     if(this.status !== 200)return;
     var jsonString = this.responseText;
     var data = JSON.parse(jsonString);
+    console.log(data);
 
-    for (point of data.snappedPoints){
-      var snappedPathCoords = new google.maps.LatLng(point.location.latitude, point.location.longitude);
-      finalWaypoints.push(snappedPathCoords)};
+    // for (point of data.snappedPoints){
+    //   var snappedPathCoords = new google.maps.LatLng(point.location.latitude, point.location.longitude);
+    //   finalWaypoints.push(snappedPathCoords)};
 
-      var route = new google.maps.Polyline({
-        map: this.googlemap,
-        path: finalWaypoints,
-        strokeColor: "#FF0000",
-        strokeOpacity: 1.0,
-        strokeWeight: 2
-      })
-      route.setMap(that.googleMap);
+    //   var route = new google.maps.Polyline({
+    //     map: this.googlemap,
+    //     path: finalWaypoints,
+    //     strokeColor: "#FF0000",
+    //     strokeOpacity: 1.0,
+    //     strokeWeight: 2
+    //   })
+    //   route.setMap(that.googleMap);
 
     })
 }
