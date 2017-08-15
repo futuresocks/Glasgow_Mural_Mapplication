@@ -4,7 +4,6 @@ var Murals = require('../models/murals')
 
 var UI = function(){
   this.murals = new Murals();
-  this.mainMap;
   this.murals.all(function(result){
     UI.prototype.render(result);
     UI.prototype.populateChecklist(result);
