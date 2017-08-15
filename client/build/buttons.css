@@ -70,9 +70,6 @@ button {
     text-decoration: none;
   }
 
-
-
-
 a {
   text-decoration: none;
   color: lightcyan;
@@ -93,19 +90,12 @@ p {
   text-align: justify;
 }
 
-/*#header {
-  background-image: url("http://commonpurpose.org/media/2653/glasgow-compressor.jpg?center=0.38576779026217228,0.5325&mode=crop&quality=90&width=1120&heightratio=0.2895705521472392638036809816&slimmage=true&rnd=130917982490000000");
-      background-repeat: no-repeat;
-}*/
-
  #main-text {
   
   text-align: justify;
   color: lightcyan;
   font-size: 2em;
-
-  font-weight: bolder;  
-  
+  font-weight: bolder;    
 }
 
 #art-charter {
@@ -150,10 +140,11 @@ iframe {
 .item img {
   /*display: block;*/
   opacity: 0.4;
+  padding-top: 125px;
 }
 
 .item-right {
-  position: relative;
+  /*position: relative;*/
   top: 100px;
   left: 30px;
   /*height: 200px;
@@ -162,7 +153,7 @@ iframe {
 }
 
 .item-left {
-  position: relative;
+  /*position: relative;*/
   top: 10px;
   right: 30px;
   /*height: 200px;
