@@ -4,6 +4,7 @@ var Murals = require('../models/murals')
 
 var UI = function(){
   this.murals = new Murals();
+  this.mainMap;
   this.murals.all(function(result){
     UI.prototype.render(result);
     UI.prototype.populateChecklist(result);
@@ -24,14 +25,16 @@ UI.prototype = {
     var center = {lat: 55.861865, lng: -4.252625};
     var zoom = 15;
     var mapDiv = document.querySelector('#main-map')
-    var mainMap = new MapWrapper(mapDiv, center, zoom);
+    this.mainMap = new MapWrapper(mapDiv, center, zoom);
 
     murals.forEach(function(mural){
-      mainMap.addMarker(mural.coords, mural, mural.imageTags, mural.id);
-    })
+      this.mainMap.addMarker(mural.coords, mural, mural.imageTags, mural.id);
+    }.bind(this))
+
+    this.mainMap.showRoute();
 
     var showRoute = document.getElementById('showRoute');
-    showRoute.addEventListener('click', mainMap.showRoute());
+    showRoute.addEventListener('click', this.mainMap.showRoute());
 
   },
   populateChecklist: function(murals){
@@ -99,18 +102,26 @@ UI.prototype = {
       var p1 = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
       var lowest = 0;
       var title = murals[0].title;
+      var index = 0;
       for(var i = 0; i<murals.length; i++){
         var p2 = new google.maps.LatLng(murals[i].coords[0], murals[i].coords[1]);
         var distance = google.maps.geometry.spherical.computeDistanceBetween(p1, p2)
         if(i === 0){
           lowest = distance;
           title = murals[i].title;
+          index = i;
         }if(distance < lowest){
           lowest = distance;
           title = murals[i].title;
+          index = i;
         }
       }
-      alert(title);
+      for(marker of this.mainMap.markers){
+        if(marker.getPosition().lat() === murals[index].coords[0]){
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+        }
+      }
+
     };
     function error(err) {
       console.warn(`ERROR(${err.code}): ${err.message}`);
@@ -140,25 +151,36 @@ UI.prototype = {
           container.removeChild(container.firstChild);
       }
 
-      //<span class="close">&times;</span>
       var closeButton = document.createElement('span');
       closeButton.class = close;
+      closeButton.InnerText = "X";
 
       var image = document.createElement('img');
-      var title = document.createElement('p');
-      var artist = document.createElement('p');
-      var about = document.createElement('p');
+      var title = document.createElement('h3');
+      var artist = document.createElement('h5');
+      var aboutHeading = document.createElement('h7');
+      var about = document.createElement('h7');
+      var nearbyHeading = document.createElement('h7');
+      var nearby = document.createElement('h7');
+      var lineBreak = document.createElement('br');
 
       image.src = muralObject.image;
       title.innerText = muralObject.title;
       artist.innerText = muralObject.artist;
-      about.innerText = muralObject.about;
+      aboutHeading.innerText = ("About:");
+      about.innerText = (muralObject.about);
+      nearbyHeading.innerText = ("Nearby:");
+      nearby.innerText = (muralObject.nearby);
 
       container.appendChild(closeButton);
       container.appendChild(image);
       container.appendChild(title);
       container.appendChild(artist);
+      container.appendChild(aboutHeading);
       container.appendChild(about);
+      container.appendChild(lineBreak);
+      container.appendChild(nearbyHeading);
+      container.appendChild(nearby);
       
     });
 
