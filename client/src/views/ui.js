@@ -140,6 +140,7 @@ UI.prototype = {
     btn.addEventListener('click', function(mural){
       modal.style.display = "block";
       var container = document.getElementById('muralText');
+      var headingsDiv = document.getElementById('headingsText');
       var muralObject  =  {
         title: this.getAttribute('title'),
         artist: this.getAttribute('artist'),
@@ -150,12 +151,18 @@ UI.prototype = {
 
       while (container.firstChild) {
           container.removeChild(container.firstChild);
+
+      }
+
+      while(headingsDiv.firstChild){
+        headingsDiv.removeChild(headingsDiv.firstChild);
       }
 
       var closeButton = document.createElement('span');
       closeButton.class = close;
       closeButton.InnerText = "X";
 
+      
       var image = document.createElement('img');
       var title = document.createElement('h3');
       var artist = document.createElement('h5');
@@ -168,20 +175,28 @@ UI.prototype = {
       image.src = muralObject.image;
       title.innerText = muralObject.title;
       artist.innerText = muralObject.artist;
-      aboutHeading.innerText = ("About:");
+      aboutHeading.innerText = ("About: ");
       about.innerText = (muralObject.about);
-      nearbyHeading.innerText = ("Nearby:");
+      nearbyHeading.innerText = ("Nearby: ");
       nearby.innerText = (muralObject.nearby);
 
       container.appendChild(closeButton);
       container.appendChild(image);
-      container.appendChild(title);
-      container.appendChild(artist);
-      container.appendChild(aboutHeading);
-      container.appendChild(about);
-      container.appendChild(lineBreak);
-      container.appendChild(nearbyHeading);
-      container.appendChild(nearby);
+      container.appendChild(headingsDiv);
+      headingsDiv.appendChild(title);
+      headingsDiv.appendChild(artist);
+      headingsDiv.appendChild(aboutHeading);
+      aboutHeading.appendChild(about);
+      headingsDiv.appendChild(lineBreak);
+      headingsDiv.appendChild(nearbyHeading);
+      nearbyHeading.appendChild(nearby);
+      // container.appendChild(title);
+      // container.appendChild(artist);
+      // container.appendChild(aboutHeading);
+      // container.appendChild(about);
+      // container.appendChild(lineBreak);
+      // container.appendChild(nearbyHeading);
+      // container.appendChild(nearby);
       
     });
 

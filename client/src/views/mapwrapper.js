@@ -141,6 +141,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, 
 }
 
 initMap(map, markers);
+
 }
 
 module.exports = MapWrapper;

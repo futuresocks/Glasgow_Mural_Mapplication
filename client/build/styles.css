@@ -187,13 +187,27 @@ h1 {
     align-items: center;
     -webkit-justify-content: center;
     justify-content: center;
-    -webkit-flex-flow: column wrap;
-    flex-flow: column wrap;
+    -webkit-flex-flow: flex-wrap;
+    flex-flow: flex-wrap;
     -webkit-align-content: center;
     align-content: center;
 }
 
-.muralText h3 h5{
+.muralText img {
+    height: 500px;
+    width: 300px;
+    padding-right: 20px;
+}
+
+#headingsText {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.75em;
+
+}
+
+.muralText h3 h5 {
     margin-bottom: 1px;
     margin-top: 1px;
     padding: 0px;
