@@ -7,10 +7,8 @@ var MapWrapper = function(container, center, zoom){
       center: center,
       zoom: zoom
     });
-  this.googleMap.setOptions({draggable: true, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
-
- this.markers = [];
-
+  this.googleMap.setOptions({draggable: true, zoomControl: true, scrollwheel: false, disableDoubleClickZoom: true});
+  this.markers = [];
 };
 
 MapWrapper.prototype.setCenter = function(coords){
@@ -32,9 +30,11 @@ MapWrapper.prototype.addMarker = function(coordsArray, mural, tags, id){
     if (info) {
       info.close();
     }
-    var seen = " ✗ "
+
+    var seen = "Not Spotted! ✗"
     if (mural.checked){
-      seen = " ✓ "
+      seen = "Spotted! ✓"
+
     }
     ig.firstPhoto(tags, function(result){
       info = new google.maps.InfoWindow({
@@ -45,68 +45,105 @@ MapWrapper.prototype.addMarker = function(coordsArray, mural, tags, id){
   })
   this.markers.push(marker);
 }
+// -----------------Customer route finder---------
+// MapWrapper.prototype.getOrigin = function(){
+//   var origin = this.markers[0].getPosition();
+//   return origin.toString().replace(/[^0-9\.,-|]/g, "");
+// }
 
-MapWrapper.prototype.getOrigin = function(){
-  var origin = this.markers[0].getPosition();
-  return origin.toString().replace(/[^0-9\.,-|]/g, "");
+// MapWrapper.prototype.getDestination = function(){
+//   var destination = this.markers[this.markers.length-1].getPosition();
+//   return destination.toString().replace(/[^0-9\.,-|]/g, "");
+// }
+
+// MapWrapper.prototype.getWaypoints = function(){
+//   var waypoints = [];
+//   this.markers.forEach(function(marker){
+//     waypoints.push(marker.getPosition());
+//   });
+//   waypoints.splice(0, 1);
+//   waypoints.splice(waypoints.length-1, 1);
+//   // the following uses a regex to strip the waypoints of all non-required symbols
+//   var path = "&waypoints=" + waypoints.join("|").replace(/[^0-9\.,-|]/g, "");
+//   return path;
+// }
+
+// MapWrapper.prototype.sendRoute = function(callback){
+//   var origin = this.getOrigin();
+//   var destination = this.getDestination();
+//   var waypoints = this.getWaypoints();
+//   var request = new XMLHttpRequest();
+//   request.open('GET', "https://maps.googleapis.com/maps/api/directions/json?origin=" + origin + "&destination=" + destination + waypoints + "&key=AIzaSyAFHPuQ6E7xLZH1i5Vgue5TpRAA4uKmpvI");
+//   request.addEventListener('load', callback);
+//   request.send();
+// }
+
+// MapWrapper.prototype.showRoute = function(){
+//   var finalWaypoints = [];
+//   var that = this;
+//   this.sendRoute(function(){
+//     if(this.status !== 200)return;
+//     var jsonString = this.responseText;
+//     var data = JSON.parse(jsonString);
+//     console.log(data);
+
+//     // for (point of data.snappedPoints){
+//     //   var snappedPathCoords = new google.maps.LatLng(point.location.latitude, point.location.longitude);
+//     //   finalWaypoints.push(snappedPathCoords)};
+
+//     //   var route = new google.maps.Polyline({
+//     //     map: this.googlemap,
+//     //     path: finalWaypoints,
+//     //     strokeColor: "#FF0000",
+//     //     strokeOpacity: 1.0,
+//     //     strokeWeight: 2
+//     //   })
+//     //   route.setMap(that.googleMap);
+
+//     })
+// ----------------------------------------
+
+
+MapWrapper.prototype.showRoute = function(map, markers){
+function initMap(map, markers) {
+    var pointA = new google.maps.LatLng(markers[0].getPosition().lat(), markers[0].getPosition().lng()),
+        pointB = new google.maps.LatLng(markers[21].getPosition().lat(), markers[21].getPosition().lng()),
+        // Instantiate a directions service.
+        directionsService = new google.maps.DirectionsService,
+        directionsDisplay = new google.maps.DirectionsRenderer({
+            map: map
+        })
+        
+    // get route from A to B
+    var waypoints = [];
+for(marker of markers){
+  var coords = new google.maps.LatLng(marker.getPosition().lat(), marker.getPosition().lng());
+    var waypoint = {location: coords, stopover: false};
+    waypoints.push(waypoint);
 }
 
-MapWrapper.prototype.getDestination = function(){
-  var destination = this.markers[this.markers.length-1].getPosition();
-  return destination.toString().replace(/[^0-9\.,-|]/g, "");
+calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB, waypoints);
 }
 
-MapWrapper.prototype.getWaypoints = function(){
-  var waypoints = [];
-  this.markers.forEach(function(marker){
-    waypoints.push(marker.getPosition());
-  });
-  waypoints.splice(0, 1);
-  waypoints.splice(waypoints.length-1, 1);
-  // the following uses a regex to strip the waypoints of all non-required symbols
-  var path = "&waypoints=" + waypoints.join("|").replace(/[^0-9\.,-|]/g, "");
-  return path;
+function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB, waypts) {
+    directionsService.route({
+        origin: pointA,
+        destination: pointB,
+        waypoints: waypts,
+        avoidTolls: true,
+        avoidHighways: false,
+        travelMode: google.maps.TravelMode.WALKING
+    }, function (response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+        } else {
+            window.alert('Directions request failed due to ' + status);
+        }
+    });
 }
 
-MapWrapper.prototype.sendRoute = function(callback){
-  var origin = this.getOrigin();
-  var destination = this.getDestination();
-  var waypoints = this.getWaypoints();
-  var request = new XMLHttpRequest();
-  request.open('GET', "https://maps.googleapis.com/maps/api/directions/json?origin=" + origin + "&destination=" + destination + waypoints + "&mode=walking&key=AIzaSyBiatraSG2kuxTJjVxj76psGIY5o7_rSsk");
-  request.addEventListener('load', callback);
-  request.send();
-}
+initMap(map, markers);
 
-MapWrapper.prototype.showRoute = function(){
-  var finalWaypoints = [];
-  finalWaypoints.push(this.markers[0].getPosition());
-  var that = this;
-  this.sendRoute(function(){
-    if(this.status !== 200)return;
-    var jsonString = this.responseText;
-    var data = JSON.parse(jsonString);
-    console.log(data);
-    var legs = data.routes[0].legs;
-
-    for (leg of legs){
-      for(step of leg.steps){
-      // var legStart = new google.maps.LatLng(step.start_location.lat, step.start_location.lng);
-      var legEnd = new google.maps.LatLng(step.end_location.lat, step.end_location.lng);
-      // finalWaypoints.push(legStart);
-      finalWaypoints.push(legEnd);}
-    }
-
-      var route = new google.maps.Polyline({
-        map: this.googlemap,
-        path: finalWaypoints,
-        strokeColor: "#FF0000",
-        strokeOpacity: 1.0,
-        strokeWeight: 2
-      })
-      route.setMap(that.googleMap);
-
-    })
 }
 
 module.exports = MapWrapper;

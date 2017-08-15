@@ -17,6 +17,7 @@ var UI = function(){
       UI.prototype.findClosest(result);
     });
   }.bind(this));
+
 }
 
 
@@ -31,10 +32,10 @@ UI.prototype = {
       this.mainMap.addMarker(mural.coords, mural, mural.imageTags, mural.id);
     }.bind(this))
 
-    this.mainMap.showRoute();
-
-    var showRoute = document.getElementById('showRoute');
-    showRoute.addEventListener('click', this.mainMap.showRoute());
+    var showRouteButton = document.getElementById('showRoute');
+    showRouteButton.addEventListener('click', function(){
+      this.mainMap.showRoute(this.mainMap.googleMap, this.mainMap.markers);
+    }.bind(this));
 
   },
   populateChecklist: function(murals){
