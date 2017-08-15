@@ -36,6 +36,8 @@ UI.prototype = {
       this.mainMap.showRoute(this.mainMap.googleMap, this.mainMap.markers);
     }.bind(this));
 
+    this.googleMap.fitMap();
+
   },
   populateChecklist: function(murals){
     var sideNav = document.getElementById("sideList")

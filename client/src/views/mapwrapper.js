@@ -9,11 +9,15 @@ var MapWrapper = function(container, center, zoom){
     });
   this.googleMap.setOptions({draggable: true, zoomControl: true, scrollwheel: false, disableDoubleClickZoom: true});
   this.markers = [];
-  this.showDirections = true;
-  this.directionDisplay = new google.maps.DirectionsRenderer({
-      map: this.googleMap
-  });;
 };
+
+MapWrapper.prototype.fitMap = function(){
+  var latlngbounds = new google.maps.LatLngBounds();
+  for (marker of this.markers){
+    latlngbounds.extend(marker.getPosition());
+  }
+  this.googleMap.fitBounds(latlngbounds);
+}
 
 MapWrapper.prototype.setCenter = function(coords){
   this.googleMap.setCenter(coords);
@@ -34,11 +38,9 @@ MapWrapper.prototype.addMarker = function(coordsArray, mural, tags, id){
     if (info) {
       info.close();
     }
-
     var seen = "Not Spotted! ✗"
     if (mural.checked){
       seen = "Spotted! ✓"
-
     }
     ig.firstPhoto(tags, function(result){
       info = new google.maps.InfoWindow({
@@ -49,7 +51,7 @@ MapWrapper.prototype.addMarker = function(coordsArray, mural, tags, id){
   })
   this.markers.push(marker);
 }
-// -----------------Custom route finder---------
+// -----------------Customer route finder---------
 // MapWrapper.prototype.getOrigin = function(){
 //   var origin = this.markers[0].getPosition();
 //   return origin.toString().replace(/[^0-9\.,-|]/g, "");
@@ -109,13 +111,14 @@ MapWrapper.prototype.addMarker = function(coordsArray, mural, tags, id){
 
 
 MapWrapper.prototype.showRoute = function(map, markers){
-
-
-function initMap(map, markers, directionsDisplay) {
+function initMap(map, markers) {
     var pointA = new google.maps.LatLng(markers[0].getPosition().lat(), markers[0].getPosition().lng()),
         pointB = new google.maps.LatLng(markers[21].getPosition().lat(), markers[21].getPosition().lng()),
         // Instantiate a directions service.
-        directionsService = new google.maps.DirectionsService
+        directionsService = new google.maps.DirectionsService,
+        directionsDisplay = new google.maps.DirectionsRenderer({
+            map: map
+        })
         
     // get route from A to B
     var waypoints = [];
@@ -125,10 +128,10 @@ for(marker of markers){
     waypoints.push(waypoint);
 }
 
-calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB, waypoints, directionsDisplay);
+calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB, waypoints);
 }
 
-function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB, waypts, directionsDisplay) {
+function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB, waypts) {
     directionsService.route({
         origin: pointA,
         destination: pointB,
@@ -145,13 +148,8 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, 
     });
 }
 
-if(this.showDirections){
-initMap(map, markers, this.directionDisplay);
-this.showDirections = false;
-}else{
-  this.directionDisplay.set('directions', null);
-  this.showDirections = true;
-}
+initMap(map, markers);
+
 }
 
 module.exports = MapWrapper;
