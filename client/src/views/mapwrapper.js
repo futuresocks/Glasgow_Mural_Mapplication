@@ -8,7 +8,6 @@ var MapWrapper = function(container, center, zoom){
       zoom: zoom
     });
   this.googleMap.setOptions({draggable: true, zoomControl: true, scrollwheel: false, disableDoubleClickZoom: true});
-
   this.markers = [];
 };
 
