@@ -9,6 +9,10 @@ var MapWrapper = function(container, center, zoom){
     });
   this.googleMap.setOptions({draggable: true, zoomControl: true, scrollwheel: false, disableDoubleClickZoom: true});
   this.markers = [];
+  this.showDirections = true;
+  this.directionDisplay = new google.maps.DirectionsRenderer({
+      map: this.googleMap
+  });;
 };
 
 MapWrapper.prototype.setCenter = function(coords){
@@ -43,7 +47,7 @@ MapWrapper.prototype.addMarker = function(coordsArray, mural, tags, id){
   })
   this.markers.push(marker);
 }
-// -----------------Customer route finder---------
+// -----------------Custom route finder---------
 // MapWrapper.prototype.getOrigin = function(){
 //   var origin = this.markers[0].getPosition();
 //   return origin.toString().replace(/[^0-9\.,-|]/g, "");
@@ -103,14 +107,13 @@ MapWrapper.prototype.addMarker = function(coordsArray, mural, tags, id){
 
 
 MapWrapper.prototype.showRoute = function(map, markers){
-function initMap(map, markers) {
+
+
+function initMap(map, markers, directionsDisplay) {
     var pointA = new google.maps.LatLng(markers[0].getPosition().lat(), markers[0].getPosition().lng()),
         pointB = new google.maps.LatLng(markers[21].getPosition().lat(), markers[21].getPosition().lng()),
         // Instantiate a directions service.
-        directionsService = new google.maps.DirectionsService,
-        directionsDisplay = new google.maps.DirectionsRenderer({
-            map: map
-        })
+        directionsService = new google.maps.DirectionsService
         
     // get route from A to B
     var waypoints = [];
@@ -120,10 +123,10 @@ for(marker of markers){
     waypoints.push(waypoint);
 }
 
-calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB, waypoints);
+calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB, waypoints, directionsDisplay);
 }
 
-function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB, waypts) {
+function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB, waypts, directionsDisplay) {
     directionsService.route({
         origin: pointA,
         destination: pointB,
@@ -140,8 +143,13 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, 
     });
 }
 
-initMap(map, markers);
-
+if(this.showDirections){
+initMap(map, markers, this.directionDisplay);
+this.showDirections = false;
+}else{
+  this.directionDisplay.set('directions', null);
+  this.showDirections = true;
+}
 }
 
 module.exports = MapWrapper;
