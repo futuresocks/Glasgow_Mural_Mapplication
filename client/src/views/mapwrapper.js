@@ -9,6 +9,10 @@ var MapWrapper = function(container, center, zoom){
     });
   this.googleMap.setOptions({draggable: true, zoomControl: true, scrollwheel: false, disableDoubleClickZoom: true});
   this.markers = [];
+  this.directionDisplay = new google.maps.DirectionsRenderer({
+            map: this.googleMap
+        })
+  this.directionsShowing = true;
 };
 
 MapWrapper.prototype.fitMap = function(){
@@ -111,22 +115,20 @@ MapWrapper.prototype.addMarker = function(coordsArray, mural, tags, id){
 
 
 MapWrapper.prototype.showRoute = function(map, markers){
-function initMap(map, markers) {
+  function initMap(map, markers, directionsDisplay) {
     var pointA = new google.maps.LatLng(markers[0].getPosition().lat(), markers[0].getPosition().lng()),
-        pointB = new google.maps.LatLng(markers[21].getPosition().lat(), markers[21].getPosition().lng()),
+    pointB = new google.maps.LatLng(markers[markers.length - 1].getPosition().lat(), markers[markers.length - 1].getPosition().lng()),
         // Instantiate a directions service.
-        directionsService = new google.maps.DirectionsService,
-        directionsDisplay = new google.maps.DirectionsRenderer({
-            map: map
-        })
+        directionsService = new google.maps.DirectionsService
+
         
     // get route from A to B
     var waypoints = [];
-for(marker of markers){
-  var coords = new google.maps.LatLng(marker.getPosition().lat(), marker.getPosition().lng());
-    var waypoint = {location: coords, stopover: false};
-    waypoints.push(waypoint);
-}
+    for(marker of markers){
+      var coords = new google.maps.LatLng(marker.getPosition().lat(), marker.getPosition().lng());
+      var waypoint = {location: coords, stopover: false};
+      waypoints.push(waypoint);
+    }
 
 calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB, waypoints);
 }
@@ -148,7 +150,14 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, 
     });
 }
 
-initMap(map, markers);
+
+if (this.directionsShowing){
+  initMap(map, markers, this.directionDisplay);
+  this.directionsShowing = false;
+}else{
+  this.directionDisplay.set('directions', null);
+  this.directionsShowing = true;
+}
 
 }
 

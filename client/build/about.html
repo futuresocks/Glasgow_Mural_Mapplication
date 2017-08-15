@@ -31,7 +31,7 @@
 <div class="links-container">
 <div class="github-links">ArtCharter is Powered By:</div>
 <div class="github-links" id="craw"><a href="https://github.com/CrawfordD1">Crawford Davidson</a></div>
-<div class="github-links" ><a href="https://github.com/futuresocks">Colin Bell</a></div>
+<div class="github-links" id= 'colin'><a href="https://github.com/futuresocks">Colin Bell</a></div>
 <div class="github-links" id="john"><a href="https://github.com/johnallan78">John Allan</a></div>
 </div>
   <script> 
@@ -39,7 +39,7 @@
     window.location.replace("./index.html");
   }
 
-  var lads = ["craw", "john"];
+  var lads = ["craw", "john", 'colin'];
   for (lad of lads){
   document.getElementById(lad).onclick = (function() {
        document.getElementsByTagName('audio')[0].play();

@@ -36,7 +36,7 @@ UI.prototype = {
       this.mainMap.showRoute(this.mainMap.googleMap, this.mainMap.markers);
     }.bind(this));
 
-    this.googleMap.fitMap();
+    this.mainMap.fitMap();
 
   },
   populateChecklist: function(murals){
