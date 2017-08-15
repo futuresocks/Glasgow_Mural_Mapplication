@@ -5,8 +5,6 @@
   <title>About ArtCharter</title>
   <link rel="icon" href="http://img.freepik.com/free-icon/painbrush-and-painter-palette_318-73016.jpg?size=338c&ext=jpg">
   <link rel="stylesheet" href="buttons.css">
-  <script src="https://maps.googleapis.com/maps/api/js?&libraries=geometry"></script>
-  <script src="bundle.js"></script>
 </head>
 
 <audio preload="auto">
@@ -14,16 +12,17 @@
 </audio>
 
 <body>
-
+</br>
 <div id ="nav-container">
 <div onclick="openHome()" class='btn'>Find Murals</div>
 </div>
 </br>
 
-<iframe id="video" width='100%' height="400" src="https://www.youtube.com/embed/YJjQt3ENmEM" frameborder="0" allowfullscreen></iframe></iframe>
+<iframe id="video" width='100%' height="500" src="https://www.youtube.com/embed/YJjQt3ENmEM" frameborder="0" allowfullscreen></iframe></iframe>
 
 <div id="text-container">
-<p id="main-text">"<span id="art-charter"> ArtCharter</span> is a powerful web app which uncovers the untapped artistic heritage of Glasgow's thriving streets and buildings. The location of the city's finest street art and murals are brought to the user's fingertips, whilst mapping out an interesting, diverse route through Glasgow's city centre. The app is designed for locals and visitors alike as the city artwork contains multiple hidden gems that even many locals have not yet discovered "</p>
+
+<p id="main-text"><span id="art-charter"><img id="logo" src="images/ArtCharterGold.png" height= 100px width = auto></span> is a powerful web app which uncovers the untapped artistic heritage of Glasgow's thriving streets and buildings. The location of the city's finest street art and murals are brought to the user's fingertips, whilst mapping out an interesting, diverse route through Glasgow's city centre. The app is designed for locals and visitors alike as the city artwork contains multiple hidden gems that even many locals have not yet discovered.</p>
 </div>
 
 <!-- <div id="header"></div> -->
@@ -39,7 +38,7 @@
     window.location.replace("./index.html");
   }
 
-  var lads = ["craw", "john", 'colin'];
+  var lads = ["craw", "john"];
   for (lad of lads){
   document.getElementById(lad).onclick = (function() {
        document.getElementsByTagName('audio')[0].play();
