@@ -7,10 +7,9 @@ var MapWrapper = function(container, center, zoom){
       center: center,
       zoom: zoom
     });
-  this.googleMap.setOptions({draggable: true, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
+  this.googleMap.setOptions({draggable: true, zoomControl: true, scrollwheel: false, disableDoubleClickZoom: true});
 
- this.markers = [];
-
+  this.markers = [];
 };
 
 MapWrapper.prototype.setCenter = function(coords){
@@ -32,9 +31,9 @@ MapWrapper.prototype.addMarker = function(coordsArray, mural, tags, id){
     if (info) {
       info.close();
     }
-    var seen = "Not Spotted!"
+    var seen = "Not Spotted! ✗"
     if (mural.checked){
-      seen = "Spotted!"
+      seen = "Spotted! ✓"
     }
     ig.firstPhoto(tags, function(result){
       info = new google.maps.InfoWindow({
@@ -47,19 +46,46 @@ MapWrapper.prototype.addMarker = function(coordsArray, mural, tags, id){
 }
 
 
-MapWrapper.prototype.showRoute = function(){
-  var waypoints = [];
-  this.markers.forEach(function(marker){
-    waypoints.push(marker.getPosition());
-  })
+MapWrapper.prototype.showRoute = function(map, markers){
+// --------------------------------
+function initMap(map, markers) {
+    var pointA = new google.maps.LatLng(markers[0].getPosition().lat(), markers[0].getPosition().lng()),
+        pointB = new google.maps.LatLng(markers[21].getPosition().lat(), markers[21].getPosition().lng()),
+        // Instantiate a directions service.
+        directionsService = new google.maps.DirectionsService,
+        directionsDisplay = new google.maps.DirectionsRenderer({
+            map: map
+        })
+        
+    // get route from A to B
+    var waypoints = [];
+for(marker of markers){
+  var coords = new google.maps.LatLng(marker.getPosition().lat(), marker.getPosition().lng());
+    var waypoint = {location: coords, stopover: false};
+    waypoints.push(waypoint);
+}
 
-  var route = new google.maps.Polyline({
-      map: this.googlemap,
-      path: waypoints,
-      strokeColor: "#FF0000",
-      strokeOpacity: 1.0,
-      strokeWeight: 2
-  });
+calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB, waypoints);
+}
+
+function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB, waypts) {
+    directionsService.route({
+        origin: pointA,
+        destination: pointB,
+        waypoints: waypts,
+        avoidTolls: true,
+        avoidHighways: false,
+        travelMode: google.maps.TravelMode.WALKING
+    }, function (response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+        } else {
+            window.alert('Directions request failed due to ' + status);
+        }
+    });
+}
+
+initMap(map, markers);
 }
 
 module.exports = MapWrapper;

@@ -4,12 +4,13 @@
   <meta charset="UTF-8">
   <title>Glasgow City Mural Mapplication</title>
   <link rel="stylesheet" href="styles.css">
-  <script src="https://maps.googleapis.com/maps/api/js?&libraries=geometry"></script>
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?&libraries=geometry"></script> -->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCctYrfwRQtYwagZsM0Ksvod6sluMHIazE&libraries=geometry"></script>
   <script src="bundle.js"></script>
 </head>
 <body>
 
-  <div class="nav-bar">
+  <div class="nav-bar">   
     <span onclick="openNav()" class="openSideBar">Open Checklist</span>
     <span class="openSideBar" id="find-nearest">Find Nearest</span>
     <h1>ArtCharter</h1>
@@ -38,8 +39,6 @@
     }
     </script>
 
-
-    
     <div class="map-container" id="main-map">
     </div>
 
