@@ -44,7 +44,7 @@ artistWebsite: "https://www.facebook.com/smuggraffiti/",
 about: "Before the gable end wall overlooking Ingram Street car park featured peeling paint and graffiti. Now thanks to the imagination of Smug it shows all types of animals found in Glasgow’s parks and green space appearing through what looks like holes in the wall.",
 nearby: "The Fellow Glasgow Residents Mural is in the heart of Glasgow’s popular Merchant City where there is plenty to do for all including a huge variety of restaurants and a Craft and Design Fair each Sunday 12-6pm in Merchant Square. ",
 coords: [55.859113, -4.244563],
-imageTags: "fellowglasgowresidents+mural",
+imageTags: "fellow+glasgow+residents+mural",
 checked: false
 },
 
