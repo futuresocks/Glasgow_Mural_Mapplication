@@ -2,7 +2,7 @@
 
 Steps to run:
 - npm install
-- npm build
+- npm run build
 - mongod
 - mongo < seeds.js 
 - npm start 
